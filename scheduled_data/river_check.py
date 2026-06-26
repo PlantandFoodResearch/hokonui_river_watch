@@ -4,16 +4,18 @@ import xmltodict
 from datetime import datetime, timedelta
 
 FLOW_THRESHOLD = 200.0  # m3/sec - adjust as needed
-LOWER_THRESHOLD = 190.0  # m3/sec - adjust as needed
+
+# Not used yet might use it for hysteresis 
+# to avoid multiple alerts for small fluctuations around the threshold
+# LOWER_THRESHOLD = 190.0  # m3/sec - 
+
 FIRST_RUN_LOOKBACK_MINUTES = 15
 LAST_RUN_TIME_FILE = os.path.join(os.path.dirname(__file__), "last_run_time.txt")
 TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
 API_URL = (
-    "http://odp.es.govt.nz/ariver.hts"
-    "?Service=Hilltop&Request=GetData"
-    "&site=Mataura%20River%20at%20Gore"
-    "&measurement=Flow"
+    "http://odp.es.govt.nz/ariver.hts?Service=Hilltop&Request=GetData"
+    "&site=Mataura%20River%20at%20Gore&measurement=Flow"
     "&From={from_date}&To={to_date}"
 )
 
